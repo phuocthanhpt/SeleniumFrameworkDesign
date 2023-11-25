@@ -48,4 +48,5 @@ public class ProductCatalogue extends AbstractComponents {
 //        waitForElementDisappear(spinner);
         waitForElementDisappear(driver.findElement(By.cssSelector(".ng-animating")));
     }
+
 }
