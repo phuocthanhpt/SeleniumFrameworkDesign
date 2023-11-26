@@ -16,7 +16,7 @@ public class AbstractComponents {
     WebDriver driver;
     WebDriverWait wait;
 
-    @FindBy(css="[routerlink*='cart']")
+    @FindBy(css = "[routerlink*='cart']")
     WebElement cartHeader;
 
     public AbstractComponents(WebDriver driver) {
@@ -29,15 +29,18 @@ public class AbstractComponents {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
     }
 
-    public void waitForElementDisappear(WebElement element){
+    public void waitForElementDisappear(WebElement element) {
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
-    public CartPage goToCartPage(){
+    public CartPage goToCartPage() {
         cartHeader.click();
 
         return new CartPage(driver);
     }
 
-
+    public void waitForWebElementToAppear(WebElement findBy) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(findBy));
+    }
 }
