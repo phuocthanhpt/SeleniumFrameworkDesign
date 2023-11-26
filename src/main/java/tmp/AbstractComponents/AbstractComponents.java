@@ -1,4 +1,4 @@
-package AbstractComponents;
+package tmp.AbstractComponents;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +26,6 @@ public class AbstractComponents {
     }
 
     public void waitForElementToAppear(By findBy) {
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
     }
 
@@ -39,4 +38,6 @@ public class AbstractComponents {
 
         return new CartPage(driver);
     }
+
+
 }

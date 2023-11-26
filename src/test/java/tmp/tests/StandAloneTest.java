@@ -1,4 +1,4 @@
-package tmp;
+package tmp.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;

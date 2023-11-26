@@ -1,6 +1,6 @@
 package tmp.pageObjects;
 
-import AbstractComponents.AbstractComponents;
+import tmp.AbstractComponents.AbstractComponents;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
