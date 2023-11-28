@@ -15,11 +15,8 @@ public class ErrorValidationsTest extends BaseTest {
 
 	@Test(groups= {"ErrorHandling"})
 	public void LoginErrorValidation() throws IOException, InterruptedException {
-
-	
-		landingPage.loginApplication("anshika@gmail.com", "Iamki000");
-		Assert.assertEquals("Incorrect email or password.", landingPage.getErrorMessage());
-
+		landingPage.loginApplication("tmp_test1@email.com", "Auto@123456");
+		Assert.assertEquals("Incorrect emaillll or password.", landingPage.getErrorMessage());
 	}
 	
 
@@ -27,7 +24,7 @@ public class ErrorValidationsTest extends BaseTest {
 	public void ProductErrorValidation() throws IOException, InterruptedException
 	{
 		String productName = "ZARA COAT 3";
-		ProductCatalogue productCatalogue = landingPage.loginApplication("rahulshetty@gmail.com", "Iamking@000");
+		ProductCatalogue productCatalogue = landingPage.loginApplication("tmp@email.com", "Auto@123");
 		List<WebElement> products = productCatalogue.getProductList();
 		productCatalogue.addProductToCart(productName);
 		CartPage cartPage = productCatalogue.goToCartPage();

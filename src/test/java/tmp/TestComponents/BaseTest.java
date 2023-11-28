@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -32,7 +34,8 @@ public class BaseTest {
         Properties properties = new Properties();
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/tmp/resources/GlobalData.properties");
         properties.load(fis);
-        String browserName = properties.getProperty("browser");
+//        String browserName = properties.getProperty("browser");
+        String browserName = System.getProperty("browser") != null ? System.getProperty("browser") : properties.getProperty("browser");
 
         if (browserName.contains("chrome")) {
             WebDriverManager.chromedriver().setup();
@@ -68,5 +71,19 @@ public class BaseTest {
         });
 
         return data;
+    }
+
+    /*
+        This method is called in Listeners, it does not know WebDriver running
+        We should provide WebDriver as param
+     */
+    public String getScreenshot(String testCaseName, WebDriver driver) throws IOException {
+        TakesScreenshot takesScreenshot = (TakesScreenshot)driver;
+        File srcFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
+        String destFilePath = System.getProperty("user.dir") + "/reports/" + testCaseName + ".png";
+        File destFile = new File(destFilePath);
+        FileUtils.copyFile(srcFile, destFile);
+
+        return destFilePath;
     }
 }
